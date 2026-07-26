@@ -11,21 +11,23 @@ st.title("Silver Kampong")
 
 #e.g ReadFromJson(file.json, "movies")
 
-
+#Movies dictionary
 movies = [
         {"title": "My Children", "desc": "A man who values his children", "showtimes": "9.00 AM", "halls": "Cinema Hall 1", "photos": "https://images.pexels.com/photos/15914002/pexels-photo-15914002.jpeg", "date": "2026-08-26"},
         {"title": "My Struggle", "desc": "Is this source reliable?", "showtimes": "12.00 PM", "halls": "Cinema Hall 2", "photos": "https://images.pexels.com/photos/9804995/pexels-photo-9804995.jpeg", "date": "2026-08-27"},
         {"title": "-man", "desc": "-I am powerless", "showtimes": "3.00 PM", "halls": "Cinema Hall 3", "photos": "https://images.pexels.com/photos/28344947/pexels-photo-28344947.jpeg", "date": "2026-08-28"}]
 
+#Setting the filters selection
 filters = st.selectbox("Filters", options=["All", "Showtimes", "Halls", "Date"], index=0)
 
 filtered_movies = []
+
 
 if filters == "All":
     filtered_movies = movies
 
 elif filters == "Date":
-    selected_date = st.date_input("Select Date", max_value=dt.date(2026, 12, 31), format="DD/MM/YYYY")
+    selected_date = st.date_input("Select Date", max_value=dt.date(next.year, 1, 1), format="DD/MM/YYYY")
     date_str = str(selected_date)
     for movie in movies:
         if movie["date"] == date_str:
@@ -71,3 +73,4 @@ if filtered_movies:
             st.button(movie["halls"], key=f"{movie['title']}, {movie['halls']}")
 else:
     st.info("There are no movies. Please seek help as soon as possible.")
+    st.balloons()
