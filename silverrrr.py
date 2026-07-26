@@ -25,7 +25,7 @@ if filters == "All":
     filtered_movies = movies
 
 elif filters == "Date":
-    selected_date = st.date_input("Select Date", max_value=dt.date(today.year, 1, 1), format="DD/MM/YYYY")
+    selected_date = st.date_input("Select Date", max_value=dt.date(2026, 12, 31), format="DD/MM/YYYY")
     date_str = str(selected_date)
     for movie in movies:
         if movie["date"] == date_str:
