@@ -1,5 +1,6 @@
 import streamlit as st
 
+#Kaiser's function to read a .json file
 def ReadFromJson(fp, *locations):
   with open(fp,"r") as f:
     myFile = json.load(f)
@@ -23,15 +24,10 @@ if filters == "All":
     filtered_movies = movies
 
 elif filters == "Date":
-    all_dates = []
+    selected_date = st.date_input("Select Date", max_value=datetime.date(today.year, 12, 31), format="DD/MM/YYYY")
+    date_str = str(selected_date)
     for movie in movies:
-        if movie["date"] not in all_dates:
-            all_dates.append(movie["date"])
-    all_dates.sort()
-
-    selected_date = st.selectbox("Select Date", options=all_dates)
-    for movie in movies:
-        if movie["date"] == selected_date:
+        if movie["date"] == date_str:
             filtered_movies.append(movie)
 
 elif filters == "Showtimes":
@@ -72,3 +68,5 @@ if filtered_movies:
             st.button(movie["showtimes"], key=f"{movie['title']}, {movie["showtimes"]}")
             st.write("Halls: ")
             st.button(movie["halls"], key=f"{movie['title']}, {movie['halls']}")
+else:
+    st.info("There are no movies. Please seek help as soon as possible.")
