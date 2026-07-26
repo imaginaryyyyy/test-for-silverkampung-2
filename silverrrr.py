@@ -58,7 +58,7 @@ elif filters == "Halls":
             filtered_movies.append(movie)
 
 if filtered_movies:
-    cols = st.columns(len(filtered_movies), border=True, vertical_alignment="centre")
+    cols = st.columns(len(filtered_movies), border=True, vertical_alignment="center")
     for i in range(len(filtered_movies)):
         movie = filtered_movies[i]
         col = cols[i]
