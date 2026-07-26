@@ -19,8 +19,8 @@ filters = st.selectbox("Filters", options=["All", "Showtimes", "Halls", "Date"],
 
 filtered_movies = []
 
-if filters = "All":
-    filteredd_movies = movies
+if filters == "All":
+    filtered_movies = movies
 
 elif filters == "Date":
     all_dates = []
