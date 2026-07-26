@@ -18,7 +18,7 @@ movies = [
         {"title": "-man", "desc": "-I am powerless", "showtimes": "3.00 PM", "halls": "Cinema Hall 3", "photos": "https://images.pexels.com/photos/28344947/pexels-photo-28344947.jpeg", "date": "2026-08-28"}]
 
 #Setting the filters selection
-filters = st.selectbox("Filters", options=["All", "Showtimes", "Halls", "Date"], index=0)
+filters = st.selectbox("", options=["All", "Showtimes", "Halls", "Date"], index=0)
 
 filtered_movies = []
 
