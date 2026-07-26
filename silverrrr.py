@@ -65,12 +65,15 @@ if filtered_movies:
             st.subheader(movie["title"])
             st.caption(movie["desc"])
             st.image(movie["photos"])
-            st.write("Date: ")
-            st.button(movie["date"])
-            st.write("Showtimes: ")
-            st.button(movie["showtimes"], key=f"{movie['title']}, {movie["showtimes"]}")
-            st.write("Halls: ")
-            st.button(movie["halls"], key=f"{movie['title']}, {movie['halls']}")
+            if filters != "Date":
+                st.write("Date: ")
+                st.button(movie["date"])
+            if filters != "Showtimes"
+                st.write("Showtimes: ")
+                st.button(movie["showtimes"], key=f"{movie['title']}, {movie["showtimes"]}")
+            if filters != "Halls":
+                st.write("Halls: ")
+                st.button(movie["halls"], key=f"{movie['title']}, {movie['halls']}")
 else:
     st.info("There are no movies. Please seek help as soon as possible.")
     st.balloons()
