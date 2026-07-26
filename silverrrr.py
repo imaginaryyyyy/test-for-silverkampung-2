@@ -1,5 +1,5 @@
 import streamlit as st
-import datetime
+import datetime as dt
 
 #Kaiser's function to read a .json file
 def ReadFromJson(fp, *locations):
@@ -25,7 +25,7 @@ if filters == "All":
     filtered_movies = movies
 
 elif filters == "Date":
-    selected_date = st.date_input("Select Date", max_value=datetime.date(today.year, 12, 31), format="DD/MM/YYYY")
+    selected_date = st.date_input("Select Date", max_value=dt.date(next.year, 1, 1), format="DD/MM/YYYY")
     date_str = str(selected_date)
     for movie in movies:
         if movie["date"] == date_str:
