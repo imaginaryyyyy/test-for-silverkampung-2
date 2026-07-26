@@ -51,7 +51,7 @@ elif filters == "Halls":
     for movie in movies:
         if movie["halls"] not in all_halls:
             all_halls.append(movie["halls"])
-    halls_filter = st.pills("", options=all_halls, default=halls_filter, selection_mode="multi")
+    halls_filter = st.pills("", options=all_halls, default=all_halls, selection_mode="multi")
 
     for movie in movies:
         if movie["halls"] in halls_filter:
