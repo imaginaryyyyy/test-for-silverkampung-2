@@ -37,7 +37,7 @@ elif filters == "Showtimes":
 
 
 elif filters == "Halls":
-    halls_filter = st.pills("", options=extract(movies, "halls", "halls"), default=extract(movies, "halls", "halls"), selection_mode="multi")
+    halls_filter = st.pills("", options=extract(movies, "halls", "cinemas"), default=extract(movies, "halls", "cinemas"), selection_mode="multi")
 
     for movie in movies:
         if movie["halls"] in halls_filter:
