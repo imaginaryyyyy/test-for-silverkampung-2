@@ -67,4 +67,4 @@ if filtered_movies:
                     st.write("Halls: ")
                     st.button(movie["halls"], key=f"{movie['title']}, {movie['halls']}")
 else:
-    st.info("There are no movies for the option selected.")
+    st.info("There are no movies for the date selected.")
