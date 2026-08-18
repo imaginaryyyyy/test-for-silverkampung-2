@@ -11,9 +11,6 @@ def extract(movies, key, Type):
             Type.append(movie[key])
     return Type
 
-    
-
-
 #Setting the filters selection
 filters = st.selectbox("", options=["All", "Showtimes", "Halls", "Date"], index=0)
 
@@ -30,7 +27,7 @@ elif filters == "Date":
             filtered_movies.append(movie)
 
 elif filters == "Showtimes":
-    extract(movies, "showtimes", timings) 
+    extract(movies, "showtimes", "timings") 
     showtimes_filter = st.pills("", options=all_times, default=all_times, selection_mode="multi")
 
     for movie in movies:
@@ -39,7 +36,7 @@ elif filters == "Showtimes":
 
 
 elif filters == "Halls":
-    extract(movies, "halls", halls) 
+    extract(movies, "halls", "halls") 
     halls_filter = st.pills("", options=all_halls, default=all_halls, selection_mode="multi")
 
     for movie in movies:
