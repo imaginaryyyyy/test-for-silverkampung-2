@@ -1,7 +1,7 @@
 import streamlit as st
 import datetime as dt
 
-st.title("Silver Kampong")
+st.header("Silver Kampong")
 
 movies = [
         {"title": "My Children", "desc": "A man who values his children", "showtimes": "9.00 AM", "halls": "Cinema Hall 1", "photos": "https://images.pexels.com/photos/15914002/pexels-photo-15914002.jpeg", "date": "2026-08-26"},
