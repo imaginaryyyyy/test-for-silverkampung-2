@@ -85,7 +85,7 @@ if user_input:
         if rating == 0:
                 look = "Is this physically possible?"
         elif rating > 0 and rating < 5:
-                look = "We don't want you on this site."
+                look = "Get off this site."
         elif rating > 4 and rating < 8:
                 look = "Looking good"
         elif rating >= 8:
