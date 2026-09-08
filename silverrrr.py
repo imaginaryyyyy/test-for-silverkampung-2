@@ -1,12 +1,16 @@
 import streamlit as st
 import datetime as dt
+pip install google-genai streamlit
 
-st.title("Silver Kampong", text_alignment="center")
+api_key = st.secrets["GEMINI_API_KEY"]
+client = genai.Client(api_key=api_key)
 
 movies = [
         {"title": "My Children", "desc": "A man who values his children", "showtimes": "9.00 AM", "halls": "Cinema Hall 1", "photos": "https://images.pexels.com/photos/15914002/pexels-photo-15914002.jpeg", "date": "2026-08-26"},
         {"title": "My Struggle", "desc": "Is this source reliable?", "showtimes": "12.00 PM", "halls": "Cinema Hall 2", "photos": "https://images.pexels.com/photos/9804995/pexels-photo-9804995.jpeg", "date": "2026-08-27"},
         {"title": "-man", "desc": "-I am powerless", "showtimes": "3.00 PM", "halls": "Cinema Hall 3", "photos": "https://images.pexels.com/photos/28344947/pexels-photo-28344947.jpeg", "date": "2026-08-28"}]
+
+data_for_ai = json.dumps(movies, indent=4)
 
 def extract(movies, key, Type):
     Type = []
@@ -30,7 +34,7 @@ elif filters == "Date":
         if movie["date"] == date_str:
             filtered_movies.append(movie)
 
-elif filters == "Showtimes": 
+elif filters == "Showtimes":
     showtimes_filter = st.pills("", options=extract(movies, "showtimes", "timings"), default=extract(movies, "showtimes", "timings"), selection_mode="multi")
 
     for movie in movies:
@@ -70,3 +74,11 @@ if filtered_movies:
                     st.button(movie["halls"], key=f"{movie['title']}, {movie['halls']}")
 else:
     st.info("There are no movies for the date selected.")
+
+st.subheader("MovieFinder Assistant")
+user_input = st.text_input("Ask about what kind of movie you want:")
+
+if st.button("Find") and user_input:
+    prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_from_ai}, User Input: {user_input}"
+    response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+    st.write(response.text)
