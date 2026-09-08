@@ -1,6 +1,6 @@
 import streamlit as st
 import datetime as dt
-!pip install google-genai streamlit
+from google import genai
 
 api_key = st.secrets["GEMINI_API_KEY"]
 client = genai.Client(api_key=api_key)
