@@ -5,8 +5,7 @@ import json
 
 api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-model = genai.GenerativeModel("gemini-2.5-flash")
-
+model = genai.GenerativeModel("gemini-2.5-flash-lite")
 movies = [
         {"title": "My Children", "desc": "A man who values his children", "showtimes": "9.00 AM", "halls": "Cinema Hall 1", "photos": "https://images.pexels.com/photos/15914002/pexels-photo-15914002.jpeg", "date": "2026-08-26"},
         {"title": "My Struggle", "desc": "Is this source reliable?", "showtimes": "12.00 PM", "halls": "Cinema Hall 2", "photos": "https://images.pexels.com/photos/9804995/pexels-photo-9804995.jpeg", "date": "2026-08-27"},
@@ -81,7 +80,7 @@ st.subheader("MovieFinder Assistant")
 user_input = st.text_input("If you are lost, ask about what kind of movie you want:")
 
 if st.button("Find") and user_input:
-    prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}. You need to sound sure to give the user confidence in what you are saying. Do not say words such as 'likely'. For reference, 'My Children' is a high-stakes documentary (thriller) on catching predators, 'My Struggle' is a drama re-enacting Hitler's rise to power and fall, '-man' is a comedy-action hybrid on a man trying to be a superhero. You should expand on ths yourself. "
+    prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}. You need to sound sure to give the user confidence in what you are saying. Do not say words such as 'likely'. For reference, 'My Children' is a high-stakes documentary (thriller) on catching predators, 'My Struggle' is a drama re-enacting Hitler's rise to power and fall, '-man' is a comedy-action hybrid on a man trying to be a superhero. You should expand on ths yourself. Maintain a friendly but persuasive tone. "
     response = model.generate_content(prompt)
     container = st.container(border=True)
     container.write(response.text)
