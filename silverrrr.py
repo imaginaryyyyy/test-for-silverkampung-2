@@ -82,5 +82,5 @@ user_input = st.text_input("If you are lost, ask about what kind of movie you wa
 
 if st.button("Find") and user_input:
     prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}"
-    response = model.generate_content(model="gemini-1.5-flash", contents=prompt)
+    response = model.generate_content(prompt)
     st.write(response.text)
