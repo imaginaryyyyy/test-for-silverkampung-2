@@ -79,7 +79,7 @@ else:
 st.subheader("MovieFinder Assistant")
 user_input = st.text_input("If you are lost, ask about what kind of movie you want:")
 
-if user_input and st.button("Find"):
+if st.button("Find", help="Please click on the 'Find' button to enter your prompt") and user_input:
     prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}. You need to sound sure to give the user confidence in what you are saying. Do not say words such as 'likely'. For reference, 'My Children' is a high-stakes documentary (thriller) on catching predators, 'My Struggle' is a drama re-enacting Hitler's rise to power and fall, '-man' is a comedy-action hybrid on a man trying to be a superhero. You should expand on ths yourself. Maintain a friendly but persuasive tone. "
     response = model.generate_content(prompt)
     container = st.container(border=True)
