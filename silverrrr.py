@@ -1,6 +1,7 @@
 import streamlit as st
 import datetime as dt
 import google.generativeai as genai
+import json
 
 api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
@@ -80,6 +81,6 @@ st.subheader("MovieFinder Assistant")
 user_input = st.text_input("Ask about what kind of movie you want:")
 
 if st.button("Find") and user_input:
-    prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_from_ai}, User Input: {user_input}"
-    response = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
+    prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}"
+    response = model.generate_content(model="gemini-1.5-flash", contents=prompt)
     st.write(response.text)
