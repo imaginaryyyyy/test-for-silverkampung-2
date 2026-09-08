@@ -77,7 +77,7 @@ if filtered_movies:
 else:
     st.info("There are no movies for the date selected.")
 
-user_input = st.chat_input("If you are lost, ask about what kind of movie you want:")
+user_input = st.chat_input("If you are lost, ask about what kind of movie you want.")
 
 if user_input:
         rating = random.randint(0,10)
