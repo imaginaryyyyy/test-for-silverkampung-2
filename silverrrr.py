@@ -1,9 +1,11 @@
 import streamlit as st
 import datetime as dt
-from google import genai
+pip install google-generativeai
+import google.generativeai as genai
 
 api_key = st.secrets["GEMINI_API_KEY"]
-client = genai.Client(api_key=api_key)
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 movies = [
         {"title": "My Children", "desc": "A man who values his children", "showtimes": "9.00 AM", "halls": "Cinema Hall 1", "photos": "https://images.pexels.com/photos/15914002/pexels-photo-15914002.jpeg", "date": "2026-08-26"},
