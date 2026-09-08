@@ -21,14 +21,6 @@ def extract(movies, key, Type):
             Type.append(movie[key])
     return Type
 
-st.subheader("MovieFinder Assistant")
-user_input = st.text_input("Ask about what kind of movie you want:")
-
-if st.button("Find") and user_input:
-    prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}"
-    response = model.generate_content(model="gemini-1.5-flash", contents=prompt)
-    st.write(response.text)
-
 #Setting the filters selection
 filters = st.selectbox("", options=["All", "Showtimes", "Halls", "Date"], index=0, key="movie_filters")
 
@@ -84,3 +76,11 @@ if filtered_movies:
                     st.button(movie["halls"], key=f"{movie['title']}, {movie['halls']}")
 else:
     st.info("There are no movies for the date selected.")
+
+st.subheader("MovieFinder Assistant")
+user_input = st.text_input("If you are lost, ask about what kind of movie you want:")
+
+if st.button("Find") and user_input:
+    prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}"
+    response = model.generate_content(model="gemini-1.5-flash", contents=prompt)
+    st.write(response.text)
