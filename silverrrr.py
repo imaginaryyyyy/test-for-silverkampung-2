@@ -99,3 +99,17 @@ if user_input:
                 container_ai_response = st.container(border=True)
                 container_ai_response.write("**MovieFinder:**")
                 container_ai_response.write(response.text)
+
+name = st.text_input("MovieFinder Rates You (Enter Your Name)")
+if name:
+    rating = random.randint(0,10)
+    look = ""
+    if rating == 0:
+        look = "Is this physically possible?"
+    elif rating > 0 and rating < 5:
+        look = "Get off this site."
+    elif rating > 4 and rating < 8:
+        look = "Looking good"
+    elif rating >= 8:
+        look = "Please don't leave."
+print(f"MovieFinder rates you a {rating}. {look}")
