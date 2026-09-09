@@ -112,4 +112,4 @@ if name:
         look = "Looking good"
     elif rating >= 8:
         look = "Please don't leave."
-print(f"MovieFinder rates you a {rating}. {look}")
+    print(f"MovieFinder rates you a {rating}. {look}")
