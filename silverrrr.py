@@ -8,9 +8,9 @@ api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel("gemini-3.5-flash-lite")
 movies = [
-        {"title": "My Children", "desc": "A man who values his children", "showtimes": "9.00 AM", "halls": "Cinema Hall 1", "photos": "https://images.pexels.com/photos/15914002/pexels-photo-15914002.jpeg", "date": "2026-08-26"},
-        {"title": "My Struggle", "desc": "Is this source reliable?", "showtimes": "12.00 PM", "halls": "Cinema Hall 2", "photos": "https://images.pexels.com/photos/9804995/pexels-photo-9804995.jpeg", "date": "2026-08-27"},
-        {"title": "-man", "desc": "-I am powerless", "showtimes": "3.00 PM", "halls": "Cinema Hall 3", "photos": "https://images.pexels.com/photos/28344947/pexels-photo-28344947.jpeg", "date": "2026-08-28"}]
+        {"title": "My Children", "desc": "A man who values his children", "showtimes": "9.00 AM", "halls": "Cinema Hall 1", "photos": "https://images.pexels.com/photos/15914002/pexels-photo-15914002.jpeg", "date": "2026-09-26"},
+        {"title": "My Struggle", "desc": "Is this source reliable?", "showtimes": "12.00 PM", "halls": "Cinema Hall 2", "photos": "https://images.pexels.com/photos/9804995/pexels-photo-9804995.jpeg", "date": "2026-09-27"},
+        {"title": "-man", "desc": "-I am powerless", "showtimes": "3.00 PM", "halls": "Cinema Hall 3", "photos": "https://images.pexels.com/photos/28344947/pexels-photo-28344947.jpeg", "date": "2026-09-28"}]
 
 data_for_ai = json.dumps(movies, indent=4)
 
@@ -91,7 +91,9 @@ if user_input:
         elif rating >= 8:
                 look = "Please don't leave."
         with st.spinner(f"MovieFinder rates you a {rating}/10. {look}."):
+                container_user_prompt = st.container(border=True)
+                container.write(f"😃: {user_input}")
                 prompt = f"You are a Movie Finder Assistant who's job is to recommend a movie to watch based on centext data and user needs (from their question). Context: {data_for_ai}, User Input: {user_input}. You need to sound sure to give the user confidence in what you are saying. Do not say words such as 'likely'. For reference, 'My Children' is a high-stakes documentary (thriller) on catching predators, 'My Struggle' is a drama re-enacting Hitler's rise to power and fall, '-man' is a comedy-action hybrid on a man trying to be a superhero. You should expand on ths yourself. Maintain a friendly but persuasive tone."
                 response = model.generate_content(prompt)
-                container = st.container(border=True)
-                container.write(response.text)
+                container_ai_response = st.container(border=True)
+                container.write(f"🤖: {response.text}")
